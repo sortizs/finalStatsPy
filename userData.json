@@ -1,0 +1,148 @@
+{
+    "carlosgomez": {
+        "nombre": "Carlos",
+        "apellido": "Gomez",
+        "edad": 19,
+        "amigos": [
+            "joseperez",
+            "sebastian",
+            "juanlopez"
+        ],
+        "gustos": [
+            "deportes",
+            "rock",
+            "bailar",
+            "gatos",
+            "teatro"
+        ],
+        "genero": "M",
+        "fechaIngreso": "23/08/2021",
+        "fechaBloqueo": null,
+        "fechaRetiro": null,
+        "estado": "activo"
+    },
+    "joseperez": {
+        "nombre": "Jose",
+        "apellido": "Perez",
+        "edad": 20,
+        "amigos": [
+            "carlosgomez"
+        ],
+        "gustos": [
+            "rock",
+            "perros"
+        ],
+        "genero": "M",
+        "fecha ingreso": "23/08/2021",
+        "fechaBloqueo": null,
+        "fechaRetiro": null,
+        "estado": "activo"
+    },
+    "juanlopez": {
+        "nombre": "Juan",
+        "apellido": "Lopez",
+        "edad": 18,
+        "amigos": [
+            "carlosgomez"
+        ],
+        "gustos": [
+            "deportes",
+            "gatos",
+            "teatro"
+        ],
+        "genero": "M",
+        "fecha ingreso": "23/09/2021",
+        "fechaBloqueo": null,
+        "fechaRetiro": null,
+        "estado": "activo"
+    },
+    "camilaserna": {
+        "nombre": "Camila",
+        "apellido": "Serna",
+        "edad": 22,
+        "amigos": [
+            "walther",
+            "amaya",
+            "mansal"
+        ],
+        "gustos": [
+            "rock",
+            "teatro"
+        ],
+        "genero": "F",
+        "fecha ingreso": "23/09/2021",
+        "fechaBloqueo": null,
+        "fechaRetiro": null,
+        "estado": "activo"
+    },
+    "walther": {
+        "nombre": "Walther",
+        "apellido": "Soto",
+        "edad": 19,
+        "amigos": [
+            "camilaserna"
+        ],
+        "gustos": [
+            "teatro"
+        ],
+        "genero": "M",
+        "fecha ingreso": "23/10/2021",
+        "fechaBloqueo": null,
+        "fechaRetiro": null,
+        "estado": "activo"
+    },
+    "sebastian": {
+        "nombre": "Sebastian",
+        "apellido": "Agudelo",
+        "edad": 20,
+        "amigos": [
+            "carlosgomez",
+            "amaya"
+        ],
+        "gustos": [
+            "teatro"
+        ],
+        "genero": "M",
+        "fecha ingreso": "23/10/2021",
+        "fechaBloqueo": null,
+        "fechaRetiro": null,
+        "estado": "activo"
+    },
+    "amaya": {
+        "nombre": "Jorge",
+        "apellido": "Amaya",
+        "edad": 22,
+        "amigos": [
+            "camilaserna",
+            "sebastian",
+            "mansal"
+        ],
+        "gustos": [
+            "musica",
+            "bailar"
+        ],
+        "genero": "M",
+        "fechaIngreso": "29/11/2021",
+        "fechaBloqueo": null,
+        "fechaRetiro": null,
+        "estado": "activo"
+    },
+    "mansal": {
+        "nombre": "Manuela",
+        "apellido": "Salazar",
+        "edad": 20,
+        "amigos": [
+            "camilaserna",
+            "amaya"
+        ],
+        "gustos": [
+            "bailar",
+            "cantar"
+        ],
+        "genero": "F",
+        "fechaIngreso": "10/12/2021",
+        "fechaBloqueo": null,
+        "fechaRetiro": null,
+        "estado": "activo"
+    }
+}
