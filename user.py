@@ -1,12 +1,13 @@
-from mimetypes import init
+import re
+from file import getNames
 
 class User:
 
     name: str
     password: str
 
-    def __init__(self, name, password) -> None:
-        self.name = name
+    def __init__(self, name: str, password) -> None:
+        self.name = name.lower()
         self.password = password
 
     def saveNewUser(self):
@@ -15,15 +16,20 @@ class User:
             f.close()
             print('Usuario creado con exito.')
 
-    def validateUser(self):
-        """ with open('users.txt', 'r') as file:
-            fileLines = file.read().split('\n')
-            print(fileLines) """
-        repeatPassword = input('Ingrese la contraseña de nuevo: ')
-        if repeatPassword == self.password:
-            return True
+    def validUser(self) -> bool:
+        names = []
+        if re.fullmatch(r"[A-Za-z]+", self.name):
+            names = getNames()
+            if self.name in names:
+                print('El usuario ya existe.')
+            else:
+                repeatPassword = input('Ingrese la contraseña de nuevo: ')
+                if repeatPassword == self.password:
+                    self.saveNewUser()
+                else:
+                    print('La contraseña debe ser igual.')
         else:
-            return False
+            print('El nombre de usuario no admite caracteres especiales ni números.')
 
     def completeProfile():
         pass
