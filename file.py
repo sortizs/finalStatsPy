@@ -4,6 +4,11 @@ from typing import List
 from user import User
 
 def getNames() -> List[str]:
+    """Obtiene la lista de nombres del archivo txt
+
+    Returns:
+        List[str]: Lista de nombres registrados
+    """
     names = []
     with open('users.txt', 'r') as f:
         lines = f.read().split('\n')
