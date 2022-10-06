@@ -1,7 +1,3 @@
-from user import User
+from menu import menu
 
-username = input('Ingrese el nombre de usuario: ')
-password = input('Ingrese la contraseña: ')
-
-newUser = User(username, password)
-newUser.validUser()
+menu()
