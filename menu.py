@@ -11,7 +11,9 @@ print('2. Iniciar sesión')
 
 CURRENT_USER: User
 
-def menu():
+def menu() -> None:
+    """Presenta las opciones de menu al usuario
+    """
     opt = int(input('Elija una opción(1-2): '))
     if opt == 1:
         username = input('Ingrese el nombre de usuario: ')

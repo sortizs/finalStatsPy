@@ -1,7 +1,7 @@
-
 import json
 from typing import List
 from user import User
+
 
 def getNames() -> List[str]:
     """Obtiene la lista de nombres del archivo txt
@@ -19,7 +19,16 @@ def getNames() -> List[str]:
     del names[1::2]
     return names
 
-def getUser(username) -> User:
+
+def getUser(username: str) -> User:
+    """Obtiene el usuario y la contraseña desde el archivo user.txt
+
+    Args:
+        username (str): Nombre de usuario
+
+    Returns:
+        User: Nombre de usuario y contraseña desde el archivo user.txt
+    """
     indexOf: int
     names = getNames()
     if username in names:
@@ -32,13 +41,30 @@ def getUser(username) -> User:
     else:
         return None
 
-def getUserData(username):
+
+def getUserData(username: str) -> dict:
+    """Obtiene la información del usuario desde el archivo userData.json
+
+    Args:
+        username (str): Nombre de usuario
+
+    Returns:
+        dict: Devuelve un diccionario con la información del usuario
+    """
     with open('userData.json', 'r') as f:
         data = json.load(f)
         f.close
     return data[username]
 
-def setUserData(username, param, value):
+
+def setUserData(username: str, param: str, value: str) -> None:
+    """Edita la información del usuario en el archivo userData.json
+
+    Args:
+        username (str): Nombre de usuario
+        param (str): Parametro a modificar
+        value (str): Valor del parametro a modificar
+    """
     with open('userData.json', 'r+') as f:
         data = json.load(f)
         data[username][param] = value

@@ -3,6 +3,14 @@ import file
 from user import User
 
 def login(user: User) -> bool:
+    """Realiza las validaciones correspondientes para el inicio de sesión
+
+    Args:
+        user (User): Usuario con nombre y contraseña
+
+    Returns:
+        bool: Estado exitoso de la operación de inicio de sesión
+    """
     attempt = 2
 
     _user = file.getUser(user.username)
