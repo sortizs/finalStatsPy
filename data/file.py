@@ -1,7 +1,7 @@
 import json
-from typing import List
-from user import User
-
+from datetime import date, datetime
+from operator import indexOf
+from typing import List, Tuple
 
 def getNames() -> List[str]:
     """Obtiene la lista de nombres del archivo txt
@@ -20,14 +20,14 @@ def getNames() -> List[str]:
     return names
 
 
-def getUser(username: str) -> User:
-    """Obtiene el usuario y la contraseña desde el archivo user.txt
+def getUser(username: str) -> Tuple[str, str]:
+    """btiene el usuario y la contraseña desde el archivo user.txt
 
     Args:
         username (str): Nombre de usuario
 
     Returns:
-        User: Nombre de usuario y contraseña desde el archivo user.txt
+        Tuple[str, str]: Nombre de usuario, contraseña
     """
     indexOf: int
     names = getNames()
@@ -37,9 +37,22 @@ def getUser(username: str) -> User:
             lines = f.read().split('\n')
             line = lines[indexOf].split(';')
             f.close()
-            return User(line[0], line[1])
+            return line[0], line[1]
     else:
         return None
+
+def deleteUser(username: str):
+    indexOf: int
+    names = getNames()
+    if username in names:
+        indexOf = names.index(username)
+        with open('users.txt', 'r+') as f:
+            lines = f.read().split('\n')
+            lines.pop(indexOf)
+            f.seek(0)
+            f.write('\n'.join(lines))
+            f.truncate()
+            f.close()
 
 
 def getUserData(username: str) -> dict:
@@ -71,3 +84,22 @@ def setUserData(username: str, param: str, value: str) -> None:
         f.seek(0)
         json.dump(data, f, indent=4)
         f.truncate()
+
+def getUserMessages(username: str) -> List[str]:
+    """Obtiene la lista de mensajes que le han enviado al usuario
+
+    Args:
+        username (str): Nombre de usuario
+
+    Returns:
+        List[str]: Lista de mensajes
+    """
+    with open(f'../mensajes/{username}.txt', 'r') as f:
+        messages: List[str] = f.read().split('\n')
+    return messages
+
+def saveMessage(username:str, receiver:str, message: str):
+    date = datetime.now().strftime('%d/%m/%y %H:%M:%S')
+    with open(f'../messages/{receiver}.txt', 'a') as f:
+        f.write(f'El {date} {username} escribió: {message}\n')
+        f.close()

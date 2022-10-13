@@ -40,9 +40,30 @@ with open('userData.json', 'r') as f:
     data = json.load(f)
     print(type(data))
     print(json.dumps(data['amaya'], sort_keys=True, indent= 4))
-    f.close()"""
+    f.close()
 
 for x in range(2, 0, -1):
     print(x)
 else:
     print('no left attempts')
+    
+
+username = 'carlosgomez'
+with open(f'mensajes/{username}.txt', 'r') as f:
+    content = f.read().split('\n')
+    print(content)
+    f.close()
+
+from datetime import datetime
+
+date = datetime.now()
+
+print(datetime.now().strftime('%d/%m/%y %H:%M:%S'))"""
+
+with open('./data/user.txt', 'r+') as f:
+    lines = f.read().split('\n')
+    lines.pop(3)
+    f.seek(0)
+    f.write('\n'.join(lines))
+    f.truncate()
+    f.close()

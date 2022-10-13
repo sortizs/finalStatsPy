@@ -1,31 +1,28 @@
-import file
-import login
-import signup
-import json
-
-from user import User
+#!
 
 print('¡¡¡BIENVENIDO!!!')
-print('1. Registrarse')
-print('2. Iniciar sesión')
 
-CURRENT_USER: User
-
-def menu() -> None:
+def startMenu() -> int:
     """Presenta las opciones de menu al usuario
     """
-    opt = int(input('Elija una opción(1-2): '))
-    if opt == 1:
-        username = input('Ingrese el nombre de usuario: ')
-        password = input('Ingrese la contraseña: ')
-        CURRENT_USER = User(username, password)
-        signup.validUser(CURRENT_USER)
-        login.login(CURRENT_USER)
-    elif opt == 2:
-        username = input('Nombre de usuario: ')
-        password = input('Contraseña: ')
-        CURRENT_USER = User(username, password)
-        if login.login(CURRENT_USER):
-            print(json.dumps(file.getUserData(CURRENT_USER.username)['amigos'], sort_keys=True, indent=4))
-    else:
-        print('Opcion incorrecta.')
+    print('1. Registrarse')
+    print('2. Iniciar sesión')
+    print('3. Estadísticas de la aplicación')
+    print('4. Cerrar aplicación')
+    opt = int(input('Elija una opción(1-4): '))
+    return opt
+
+def loggedMenu() -> int:
+    """Muestra el menú de usuario despues de iniciar sesión
+    """
+    print('\n1. Ver usuarios registrados')
+    print('2. Enviar solicitud de amistad')
+    print('3. Ver solicitudes de amistad pendientes')
+    print('4. Ver mensajes')
+    print('5. Enviar mensaje')
+    print('6. Usuarios con intereses similares')
+    print('7. Completar perfil')
+    print('8. Darse de baja')
+    print('9. Cerrar sesión')
+    opt = int(input('Elija una opción(1-9): '))
+    return opt

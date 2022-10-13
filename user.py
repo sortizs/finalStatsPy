@@ -1,5 +1,7 @@
 
 import json
+import data.file as f
+from typing import List
 
 class User:
 
@@ -15,3 +17,20 @@ class User:
         """
         self.username = username.lower()
         self.password = password
+
+    def friends(username: str)  -> List[str]:
+        userData = f.getUserData(username)
+        return userData['amigos']
+
+    def friendRequests():
+        pass
+
+    def getMessages(username: str) -> List[str]:
+        messages = f.getUserMessages(username)
+        return messages
+
+    def sendMessage(username: str, receiver: str, message: str):
+        if receiver in f.getNames():
+            f.saveMessage(username, receiver, message)
+        else:
+            print('El usuario al que quiere enviar el mensaje no está registrado')
