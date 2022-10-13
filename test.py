@@ -60,10 +60,7 @@ date = datetime.now()
 
 print(datetime.now().strftime('%d/%m/%y %H:%M:%S'))"""
 
-with open('./data/user.txt', 'r+') as f:
-    lines = f.read().split('\n')
-    lines.pop(3)
-    f.seek(0)
-    f.write('\n'.join(lines))
-    f.truncate()
-    f.close()
+import data.file as f
+
+for message in f.getUserMessages('joseperez'):
+    print(message)

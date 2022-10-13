@@ -7,14 +7,17 @@ from user import User as user
 menuOpt = menu.startMenu()
 
 if menuOpt == 1:
+    # Registrar cuenta
     acc.signup()
 elif menuOpt == 2:
+    # Iniciar sesion
     acc.login()
     loggedMenuOpt = menu.loggedMenu()
     while acc.CURRENT_USER:
         if loggedMenuOpt == 1:
             # Ver usuarios registrados
-            print(f.getNames())
+            for name in f.getNames():
+                print(name)
         elif loggedMenuOpt == 2:
             # Enviar solicitud de amistad
             pass
@@ -23,7 +26,8 @@ elif menuOpt == 2:
             user.friendRequests()
         elif loggedMenuOpt == 4:
             # Ver mensajes
-            print(user.getMessages(acc.CURRENT_USER.username))
+            for message in user.getMessages(acc.CURRENT_USER.username):
+                print(message)
         elif loggedMenuOpt == 5:
             # Enviar mensaje
             receiver = input('Destinatario: ')
@@ -44,8 +48,10 @@ elif menuOpt == 2:
         else:
             print('Opción incorrecta.')
 elif menuOpt == 3:
+    # Estadísticas
     pass
 elif menuOpt == 4:
+    # Terminar aplicación
     acc.CURRENT_USER = None
 else:
     print('Opcion incorrecta.')

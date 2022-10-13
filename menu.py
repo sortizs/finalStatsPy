@@ -3,7 +3,10 @@
 print('¡¡¡BIENVENIDO!!!')
 
 def startMenu() -> int:
-    """Presenta las opciones de menu al usuario
+    """Muestra el menu principal de la aplicación
+
+    Returns:
+        int: Retorna la opción elegida por el usuario
     """
     print('1. Registrarse')
     print('2. Iniciar sesión')
@@ -13,7 +16,10 @@ def startMenu() -> int:
     return opt
 
 def loggedMenu() -> int:
-    """Muestra el menú de usuario despues de iniciar sesión
+    """Muestra el menú de inicio de sesión
+
+    Returns:
+        int: Retorna la opción elegida por el usuario
     """
     print('\n1. Ver usuarios registrados')
     print('2. Enviar solicitud de amistad')
