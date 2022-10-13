@@ -8,6 +8,7 @@ def startMenu() -> int:
     Returns:
         int: Retorna la opción elegida por el usuario
     """
+    print('\n')
     print('1. Registrarse')
     print('2. Iniciar sesión')
     print('3. Estadísticas de la aplicación')
@@ -21,7 +22,8 @@ def loggedMenu() -> int:
     Returns:
         int: Retorna la opción elegida por el usuario
     """
-    print('\n1. Ver usuarios registrados')
+    print('\n')
+    print('1. Ver usuarios registrados')
     print('2. Enviar solicitud de amistad')
     print('3. Ver solicitudes de amistad pendientes')
     print('4. Ver mensajes')
@@ -31,4 +33,13 @@ def loggedMenu() -> int:
     print('8. Darse de baja')
     print('9. Cerrar sesión')
     opt = int(input('Elija una opción(1-9): '))
+    return opt
+
+def statisticsMenu() -> int:
+    print('\n')
+    print('1. Histograma de registros')
+    print('2. Gráfica Usuarios vs Tiempo')
+    print('3. Diagrama de usuarios por género')
+    print('4. Histograma usuarios por edad')
+    opt = int(input('Elija una opción(1-4): '))
     return opt

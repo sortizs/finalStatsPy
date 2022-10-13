@@ -99,7 +99,7 @@ def getUserMessages(username: str) -> List[str]:
     Returns:
         List[str]: Lista de mensajes recibidos
     """
-    with open(f'mensajes/{username}.txt', 'r') as f:
+    with open(f'mensajes/{username}.txt', 'a+') as f:
         messages: List[str] = f.read().split('\n')
     return messages
 
@@ -114,4 +114,18 @@ def saveMessage(username:str, receiver:str, message: str):
     date = datetime.now().strftime('%d/%m/%y %H:%M:%S')
     with open(f'./mensajes/{receiver}.txt', 'a') as f:
         f.write(f'El {date} {username} escribió: {message}\n')
+        f.close()
+
+def saveProfile(username: str, profile: dict) -> None:
+    profile['fechaIngreso'] = datetime.today().strftime('%d/%m/%y')
+    profile['fechaBloqueo'] = None
+    profile['fechaRetiro'] = None
+    profile['estado'] = 'activo'
+
+    with open('./data/userData.json', 'r+') as f:
+        data = json.load(f)
+        data[username] = profile
+        f.seek(0)
+        json.dump(data, f, indent=4)
+        f.truncate()
         f.close()

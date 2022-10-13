@@ -144,5 +144,11 @@
         "fechaBloqueo": null,
         "fechaRetiro": null,
         "estado": "activo"
+    },
+    "sebas": {
+        "nombre": "Sebastian",
+        "apellido": "Ortiz",
+        "edad": 25,
+        "estado": "bloqueado"
     }
 }

@@ -1,5 +1,5 @@
 
-import json
+import re
 import data.file as f
 from typing import List
 
@@ -28,10 +28,10 @@ class User:
             List[str]: Lista de amigos
         """
         userData = f.getUserData(username)
-        return userData['amigos']
-
-    def friendRequests():
-        pass
+        if 'amigos' in userData:
+            return userData['amigos']
+        else:
+            return []
 
     def getMessages(username: str) -> List[str]:
         """Obtiene los mensajes que el usuario ha recibido
@@ -57,3 +57,22 @@ class User:
             f.saveMessage(username, receiver, message)
         else:
             print('El usuario al que quiere enviar el mensaje no se encuentra registrado.')
+
+    def completeProfile(username: str) -> None:
+        name = input('Nombre: ')
+        lastname = input('Apellido: ')
+        age = int(input('Edad: '))
+        hobbies = input('Gustos (separados por coma): ').split(', ')
+        gender = input('Genero (M-F): ')
+        _hobbies = []
+        for hobbie in hobbies:
+            _hobbies.append(re.sub(r'^\s+|\s+$', '', hobbie))
+
+        profile = {
+            'nombre': name,
+            'apellido': lastname,
+            'edad': age,
+            'gustos': _hobbies,
+            'genero': gender
+        }
+        f.saveProfile(username, profile)

@@ -1,4 +1,3 @@
-
 """ with open('users.txt', 'r') as file:
     content = file.read().split('\n')
     for contentLine in content:
@@ -59,8 +58,29 @@ from datetime import datetime
 date = datetime.now()
 
 print(datetime.now().strftime('%d/%m/%y %H:%M:%S'))"""
+"""
+import json
 
-import data.file as f
+nombre = input('Nombre: ')
+apellido = input('Apellido: ')
+edad = int(input('Edad: '))
+profile = {'nombre': nombre, 'apellido': apellido, 'edad': edad}
 
-for message in f.getUserMessages('joseperez'):
-    print(message)
+print(json.dumps(profile, indent=4))
+
+with open('./data/userData.json', 'r+') as f:
+    data = json.load(f)
+    data['sebas'] = profile
+    print(data)
+    f.seek(0)
+    json.dump(data, f, indent=4)
+    f.truncate()
+    f.close()"""
+
+import re
+
+gustos = re.sub(r'^\s+|\s+$', '', input('Gustos: ').split(','))
+# likes = []
+# for gusto in gustos:
+#    likes.append()
+print(gustos)

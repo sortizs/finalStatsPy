@@ -43,7 +43,7 @@ def signup() -> None:
     CURRENT_USER = User(username, password)
     validateUser(CURRENT_USER)
 
-def login() -> None:
+def login() -> User:
     """Realiza las validaciones correspondientes para el inicio de sesión
 
     Args:
@@ -57,16 +57,18 @@ def login() -> None:
 
     if user:
         for attempt in range(attempt, 0, -1):
-            if(user.password == CURRENT_USER.password):
+            if(user[1] == CURRENT_USER.password):
                 print(f'{len(User.friends(CURRENT_USER.username))} amigos')
-                print(f'{User.friendRequests()} solicitudes de amistad')
+                # print(f'{User.friendRequests()} solicitudes de amistad')
                 print(f'Tiene {len(User.getMessages(CURRENT_USER.username))} mensajes')
+                return(CURRENT_USER)
             else:
                 print('Contraseña incorrecta.')
                 CURRENT_USER.password = input('Ingrese de nuevo la contraseña: ')
         else:
             print('Ha bloqueado su cuenta')
-            f.setUserData(user.username, 'estado', 'bloqueado')
+            f.setUserData(user[0], 'estado', 'bloqueado')
+            return None
 
 def deleteAccount() -> None:
     """Elimina la cuenta tras verificar la contraseña
