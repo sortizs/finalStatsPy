@@ -1,5 +1,5 @@
 import json
-from datetime import date, datetime
+from datetime import datetime
 from operator import indexOf
 from typing import List, Tuple
 
@@ -59,7 +59,6 @@ def deleteUser(username: str) -> None:
             f.truncate()
             f.close()
 
-
 def getUserData(username: str) -> dict:
     """Obtiene la información del usuario desde el archivo userData.json
 
@@ -72,9 +71,11 @@ def getUserData(username: str) -> dict:
     with open('data/userData.json', 'r') as f:
         data = json.load(f)
         f.close()
-    return data[username]
-
-
+    if username in data:
+        return data[username]
+    else:
+        return {}
+    
 def setUserData(username: str, param: str, value: str) -> None:
     """Edita la información del usuario en el archivo userData.json
 
@@ -111,20 +112,36 @@ def saveMessage(username:str, receiver:str, message: str):
         receiver (str): Nombre del usuario que recibe el mensaje
         message (str): Mensaje
     """
-    date = datetime.now().strftime('%d/%m/%y %H:%M:%S')
+    date = datetime.now().strftime('%d/%m/%Y %H:%M:%S')
     with open(f'./mensajes/{receiver}.txt', 'a') as f:
         f.write(f'El {date} {username} escribió: {message}\n')
         f.close()
 
 def saveProfile(username: str, profile: dict) -> None:
-    profile['fechaIngreso'] = datetime.today().strftime('%d/%m/%y')
-    profile['fechaBloqueo'] = None
-    profile['fechaRetiro'] = None
-    profile['estado'] = 'activo'
+
+    userData = getUserData(username)
+
+    userData['nombre'] = profile['nombre']
+    userData['apellido'] = profile['apellido']
+    userData['edad'] = profile['edad']
+    userData['gustos'] = profile['gustos']
+    userData['genero'] = profile['genero']
+
+    if 'fechaIngreso' not in userData:
+        userData['fechaIngreso'] = datetime.today().strftime('%d/%m/%Y')
+
+    if 'fechaBloqueo' not in userData:
+        userData['fechaBloqueo'] = None
+
+    if 'fechaRetiro' not in userData:
+        userData['fechaRetiro'] = None
+
+    if 'estado' not in userData:
+        userData['estado'] = 'activo'
 
     with open('./data/userData.json', 'r+') as f:
         data = json.load(f)
-        data[username] = profile
+        data[username] = userData
         f.seek(0)
         json.dump(data, f, indent=4)
         f.truncate()

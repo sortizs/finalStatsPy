@@ -76,3 +76,16 @@ class User:
             'genero': gender
         }
         f.saveProfile(username, profile)
+
+    def similarHobbies(username: str) -> List[str]:
+        similarUsers = []
+        users = f.getNames()
+        users.remove(username)
+        myHobbies = f.getUserData(username)['gustos']
+        for user in users:
+            if 'gustos' in f.getUserData(user):
+                hobbies = f.getUserData(user)['gustos']
+                for myHobbie in myHobbies:
+                    if myHobbie in hobbies:
+                        similarUsers.append(user)
+        return list(dict.fromkeys(similarUsers))

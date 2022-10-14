@@ -147,8 +147,18 @@
     },
     "sebas": {
         "nombre": "Sebastian",
-        "apellido": "Ortiz",
-        "edad": 25,
-        "estado": "bloqueado"
+        "apellido": "Serna",
+        "edad": 30,
+        "gustos": [
+            "bailar",
+            "teatro",
+            "rock",
+            "comer"
+        ],
+        "genero": "m",
+        "estado": "bloqueado",
+        "fechaIngreso": "13/10/22",
+        "fechaBloqueo": null,
+        "fechaRetiro": "13/10/2022"
     }
 }

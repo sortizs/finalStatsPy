@@ -34,7 +34,11 @@ while True:
                 message = input('Mensaje: ')
                 user.sendMessage(loggedUser.username, receiver, message)
             elif loggedMenuOpt == 6:
-                # Usuarios con intereses similares
+                # Usuarios con gustos similares
+                similarHobbies = user.similarHobbies(loggedUser.username)
+                print('\nUsuarios con gustos similares:')
+                for similarHobbie in similarHobbies:
+                    print(f"- {similarHobbie}")
                 pass
             elif loggedMenuOpt == 7:
                 # Completar perfil
@@ -42,7 +46,7 @@ while True:
                 pass
             elif loggedMenuOpt == 8:
                 # Darse de baja
-                acc.deleteAccount()
+                acc.deleteAccount(loggedUser)
             elif loggedMenuOpt == 9:
                 # Cerrar sesión
                 loggedUser = None

@@ -1,10 +1,8 @@
 # Account related functions
 import re
-import json
 import data.file as f
+from datetime import datetime
 from user import User
-
-CURRENT_USER: User = None
 
 def saveNewUser(user: User) -> None:
     """Crea el usuario en el archivo users.txt
@@ -40,8 +38,8 @@ def validateUser(user: User) -> None:
 def signup() -> None:
     username = input('Ingrese el nombre de usuario: ')
     password = input('Ingrese la contraseña: ')
-    CURRENT_USER = User(username, password)
-    validateUser(CURRENT_USER)
+    currentUser = User(username, password)
+    validateUser(currentUser)
 
 def login() -> User:
     """Realiza las validaciones correspondientes para el inicio de sesión
@@ -52,29 +50,37 @@ def login() -> User:
     attempt = 2
     username = input('Nombre de usuario: ')
     password = input('Contraseña: ')
-    CURRENT_USER = User(username, password)
-    user = f.getUser(CURRENT_USER.username)
+    currentUser = User(username, password)
+    user = f.getUser(currentUser.username)
+    userData = f.getUserData(currentUser.username)
 
     if user:
-        for attempt in range(attempt, 0, -1):
-            if(user[1] == CURRENT_USER.password):
-                print(f'{len(User.friends(CURRENT_USER.username))} amigos')
-                # print(f'{User.friendRequests()} solicitudes de amistad')
-                print(f'Tiene {len(User.getMessages(CURRENT_USER.username))} mensajes')
-                return(CURRENT_USER)
+        if userData['estado'] == 'activo':
+            for attempt in range(attempt, 0, -1):
+                if(user[1] == currentUser.password):
+                    print(f'{len(User.friends(currentUser.username))} amigos')
+                    # print(f'{User.friendRequests()} solicitudes de amistad')
+                    print(f'Tiene {len(User.getMessages(currentUser.username))} mensajes')
+                    return(currentUser)
+                else:
+                    print('Contraseña incorrecta.')
+                    currentUser.password = input('Ingrese de nuevo la contraseña: ')
             else:
-                print('Contraseña incorrecta.')
-                CURRENT_USER.password = input('Ingrese de nuevo la contraseña: ')
+                print('Ha bloqueado su cuenta')
+                f.setUserData(user[0], 'estado', 'bloqueado')
+                return None
         else:
-            print('Ha bloqueado su cuenta')
-            f.setUserData(user[0], 'estado', 'bloqueado')
-            return None
+            print(f'El usuario {currentUser.username} se encuentra inactivo.')
+    else:
+        print('El usuario no se encuentra registrado')
+        return None
 
-def deleteAccount() -> None:
-    """Elimina la cuenta tras verificar la contraseña
+def deleteAccount(user: User) -> None:
+    """Desactiva la cuenta tras verificar la contraseña
     """
     password = input('Confirme la contraseña para eliminar su cuenta: ')
-    if password == CURRENT_USER.password:
-        f.deleteUser(CURRENT_USER.username)
+    if password == user.password:
+        f.setUserData(user.username, 'estado', 'inactivo')
+        f.setUserData(user.username, 'fechaRetiro', datetime.today().strftime('%d/%m/%Y'))
     else:
         print('Contraseña incorrecta')
