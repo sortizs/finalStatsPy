@@ -1,5 +1,6 @@
 
 import menu
+import stats
 import data.file as f
 import account as acc
 from user import User as user
@@ -59,7 +60,7 @@ while True:
         elif statsOpt == 2:
             pass
         elif statsOpt == 3:
-            pass
+            stats.usersPerGender()
         elif statsOpt == 4:
             pass
         else:

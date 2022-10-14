@@ -73,7 +73,7 @@ class User:
             'apellido': lastname,
             'edad': age,
             'gustos': _hobbies,
-            'genero': gender
+            'genero': gender.upper()
         }
         f.saveProfile(username, profile)
 
