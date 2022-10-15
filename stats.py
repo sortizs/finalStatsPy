@@ -3,6 +3,8 @@ import matplotlib.pyplot as plt
 import data.file as f
 
 def usersPerGender() -> None:
+    """Dibuja una grafica de torta de porcentaje de usuarios por género
+    """
     genders = ['Masculino', 'Femenino']
     male = 0
     female = 0

@@ -59,6 +59,11 @@ class User:
             print('El usuario al que quiere enviar el mensaje no se encuentra registrado.')
 
     def completeProfile(username: str) -> None:
+        """Muestra el formulario para completar/actualizar el perfil
+
+        Args:
+            username (str): Nombre de usuario
+        """
         name = input('Nombre: ')
         lastname = input('Apellido: ')
         age = int(input('Edad: '))
@@ -78,6 +83,14 @@ class User:
         f.saveProfile(username, profile)
 
     def similarHobbies(username: str) -> List[str]:
+        """Obtiene la lista de usuarios con gustos similares
+
+        Args:
+            username (str): Nombre de usuario
+
+        Returns:
+            List[str]: Usuarios con gustos similares
+        """
         similarUsers = []
         users = f.getNames()
         users.remove(username)

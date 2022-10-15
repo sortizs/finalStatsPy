@@ -118,7 +118,12 @@ def saveMessage(username:str, receiver:str, message: str):
         f.close()
 
 def saveProfile(username: str, profile: dict) -> None:
+    """Actualiza la información del perfil en userData.json
 
+    Args:
+        username (str): Nombre del usuario a actualizar
+        profile (dict): Perfil con la información a actualizar
+    """
     userData = getUserData(username)
 
     userData['nombre'] = profile['nombre']

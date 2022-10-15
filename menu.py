@@ -36,6 +36,11 @@ def loggedMenu() -> int:
     return opt
 
 def statisticsMenu() -> int:
+    """Muestra el menú de estadísticas
+
+    Returns:
+        int: Retorna la opción elegida por el usuario
+    """
     print('\n')
     print('1. Histograma de registros')
     print('2. Gráfica Usuarios vs Tiempo')

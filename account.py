@@ -44,8 +44,8 @@ def signup() -> None:
 def login() -> User:
     """Realiza las validaciones correspondientes para el inicio de sesión
 
-    Args:
-        user (User): Usuario con nombre de usuario y contraseña
+    Returns:
+        User: Retorna el usuario ingresado para el inicio de sesión
     """
     attempt = 2
     username = input('Nombre de usuario: ')
@@ -76,7 +76,10 @@ def login() -> User:
         return None
 
 def deleteAccount(user: User) -> None:
-    """Desactiva la cuenta tras verificar la contraseña
+    """Desactiva la cuenta tras verificar la contraseña de usuario
+
+    Args:
+        user (User): Usuario para desactivar
     """
     password = input('Confirme la contraseña para eliminar su cuenta: ')
     if password == user.password:
